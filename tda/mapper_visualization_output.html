@@ -1,0 +1,72 @@
+
+		<!DOCTYPE html>
+		<meta charset="utf-8">
+		<style>
+
+		.node {
+		  stroke: #fff;
+		  stroke-width: 1.5px;
+		}
+
+		.link {
+		  stroke: #999;
+		  stroke-opacity: .6;
+		}
+
+		</style>
+		<body>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+		<script>
+
+		var width = 1220,
+			height = 800;
+
+		var color = d3.scale.category20();
+
+		var color = d3.scale.ordinal()
+			.domain(["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"])
+			.range(["#FF0000","#FF1400","#FF2800","#FF3c00","#FF5000","#FF6400","#FF7800","#FF8c00","#FFa000","#FFb400","#FFc800","#FFdc00"]);
+
+		var force = d3.layout.force()
+			.charge(-120)
+			.linkDistance(30)
+			.size([width, height]);
+
+		var svg = d3.select("body").append("svg")
+			.attr("width", width)
+			.attr("height", height);
+
+		  graph = {"nodes": [{"color": "7", "group": 10, "name": "7_3.0"}, {"color": "6", "group": 8, "name": "6_1.0"}, {"color": "5", "group": 8, "name": "5_1.0"}, {"color": "1", "group": 10, "name": "1_0.0"}, {"color": "6", "group": 8, "name": "6_0.0"}, {"color": "1", "group": 10, "name": "1_1.0"}, {"color": "18", "group": 10, "name": "18_0.0"}, {"color": "7", "group": 8, "name": "7_1.0"}, {"color": "24", "group": 12, "name": "24_0.0"}, {"color": "22", "group": 14, "name": "22_0.0"}, {"color": "5", "group": 8, "name": "5_0.0"}, {"color": "5", "group": 8, "name": "5_3.0"}, {"color": "8", "group": 10, "name": "8_1.0"}, {"color": "15", "group": 12, "name": "15_0.0"}, {"color": "23", "group": 14, "name": "23_0.0"}, {"color": "5", "group": 8, "name": "5_2.0"}, {"color": "5", "group": 6, "name": "5_4.0"}, {"color": "8", "group": 10, "name": "8_0.0"}, {"color": "4", "group": 8, "name": "4_1.0"}, {"color": "7", "group": 10, "name": "7_2.0"}, {"color": "13", "group": 12, "name": "13_0.0"}, {"color": "19", "group": 10, "name": "19_0.0"}, {"color": "4", "group": 8, "name": "4_3.0"}, {"color": "2", "group": 10, "name": "2_3.0"}, {"color": "2", "group": 8, "name": "2_0.0"}, {"color": "8", "group": 10, "name": "8_2.0"}, {"color": "4", "group": 8, "name": "4_0.0"}, {"color": "11", "group": 12, "name": "11_0.0"}, {"color": "2", "group": 8, "name": "2_1.0"}, {"color": "8", "group": 8, "name": "8_3.0"}, {"color": "17", "group": 10, "name": "17_0.0"}, {"color": "2", "group": 10, "name": "2_2.0"}, {"color": "9", "group": 12, "name": "9_0.0"}, {"color": "12", "group": 12, "name": "12_0.0"}, {"color": "3", "group": 8, "name": "3_3.0"}, {"color": "6", "group": 10, "name": "6_3.0"}, {"color": "6", "group": 10, "name": "6_2.0"}, {"color": "20", "group": 10, "name": "20_0.0"}, {"color": "0", "group": 10, "name": "0_1.0"}, {"color": "16", "group": 12, "name": "16_0.0"}, {"color": "21", "group": 12, "name": "21_0.0"}, {"color": "0", "group": 10, "name": "0_0.0"}, {"color": "3", "group": 8, "name": "3_2.0"}, {"color": "3", "group": 8, "name": "3_1.0"}, {"color": "4", "group": 8, "name": "4_2.0"}, {"color": "0", "group": 10, "name": "0_3.0"}, {"color": "0", "group": 10, "name": "0_2.0"}, {"color": "3", "group": 8, "name": "3_0.0"}, {"color": "1", "group": 10, "name": "1_2.0"}, {"color": "1", "group": 10, "name": "1_3.0"}, {"color": "7", "group": 8, "name": "7_0.0"}, {"color": "14", "group": 12, "name": "14_0.0"}, {"color": "10", "group": 12, "name": "10_0.0"}], "links": [{"source": 1, "target": 2, "value": 1}, {"source": 1, "target": 7, "value": 1}, {"source": 2, "target": 1, "value": 1}, {"source": 2, "target": 18, "value": 1}, {"source": 3, "target": 24, "value": 1}, {"source": 3, "target": 41, "value": 1}, {"source": 4, "target": 10, "value": 1}, {"source": 4, "target": 50, "value": 1}, {"source": 5, "target": 28, "value": 1}, {"source": 5, "target": 38, "value": 1}, {"source": 9, "target": 14, "value": 1}, {"source": 9, "target": 40, "value": 1}, {"source": 8, "target": 14, "value": 1}, {"source": 10, "target": 4, "value": 1}, {"source": 10, "target": 26, "value": 1}, {"source": 11, "target": 22, "value": 1}, {"source": 11, "target": 35, "value": 1}, {"source": 12, "target": 19, "value": 1}, {"source": 12, "target": 32, "value": 1}, {"source": 13, "target": 39, "value": 1}, {"source": 13, "target": 51, "value": 1}, {"source": 14, "target": 8, "value": 1}, {"source": 14, "target": 9, "value": 1}, {"source": 15, "target": 36, "value": 1}, {"source": 15, "target": 44, "value": 1}, {"source": 16, "target": 36, "value": 1}, {"source": 17, "target": 7, "value": 1}, {"source": 17, "target": 32, "value": 1}, {"source": 17, "target": 50, "value": 1}, {"source": 18, "target": 2, "value": 1}, {"source": 18, "target": 43, "value": 1}, {"source": 20, "target": 33, "value": 1}, {"source": 20, "target": 51, "value": 1}, {"source": 21, "target": 6, "value": 1}, {"source": 21, "target": 37, "value": 1}, {"source": 41, "target": 3, "value": 1}, {"source": 22, "target": 11, "value": 1}, {"source": 22, "target": 34, "value": 1}, {"source": 38, "target": 5, "value": 1}, {"source": 23, "target": 34, "value": 1}, {"source": 23, "target": 49, "value": 1}, {"source": 24, "target": 3, "value": 1}, {"source": 24, "target": 47, "value": 1}, {"source": 49, "target": 23, "value": 1}, {"source": 49, "target": 45, "value": 1}, {"source": 26, "target": 10, "value": 1}, {"source": 26, "target": 47, "value": 1}, {"source": 32, "target": 12, "value": 1}, {"source": 32, "target": 17, "value": 1}, {"source": 32, "target": 25, "value": 1}, {"source": 32, "target": 29, "value": 1}, {"source": 32, "target": 52, "value": 1}, {"source": 28, "target": 5, "value": 1}, {"source": 28, "target": 43, "value": 1}, {"source": 6, "target": 21, "value": 1}, {"source": 6, "target": 30, "value": 1}, {"source": 30, "target": 6, "value": 1}, {"source": 30, "target": 39, "value": 1}, {"source": 31, "target": 42, "value": 1}, {"source": 31, "target": 48, "value": 1}, {"source": 27, "target": 33, "value": 1}, {"source": 27, "target": 52, "value": 1}, {"source": 33, "target": 20, "value": 1}, {"source": 33, "target": 27, "value": 1}, {"source": 34, "target": 22, "value": 1}, {"source": 34, "target": 23, "value": 1}, {"source": 35, "target": 0, "value": 1}, {"source": 35, "target": 11, "value": 1}, {"source": 36, "target": 15, "value": 1}, {"source": 36, "target": 16, "value": 1}, {"source": 36, "target": 19, "value": 1}, {"source": 37, "target": 21, "value": 1}, {"source": 37, "target": 40, "value": 1}, {"source": 46, "target": 48, "value": 1}, {"source": 19, "target": 12, "value": 1}, {"source": 19, "target": 29, "value": 1}, {"source": 19, "target": 36, "value": 1}, {"source": 39, "target": 13, "value": 1}, {"source": 39, "target": 30, "value": 1}, {"source": 40, "target": 9, "value": 1}, {"source": 40, "target": 37, "value": 1}, {"source": 0, "target": 25, "value": 1}, {"source": 0, "target": 35, "value": 1}, {"source": 42, "target": 31, "value": 1}, {"source": 42, "target": 44, "value": 1}, {"source": 43, "target": 18, "value": 1}, {"source": 43, "target": 28, "value": 1}, {"source": 44, "target": 15, "value": 1}, {"source": 44, "target": 42, "value": 1}, {"source": 45, "target": 49, "value": 1}, {"source": 48, "target": 31, "value": 1}, {"source": 48, "target": 46, "value": 1}, {"source": 7, "target": 1, "value": 1}, {"source": 7, "target": 17, "value": 1}, {"source": 47, "target": 24, "value": 1}, {"source": 47, "target": 26, "value": 1}, {"source": 29, "target": 19, "value": 1}, {"source": 29, "target": 32, "value": 1}, {"source": 25, "target": 0, "value": 1}, {"source": 25, "target": 32, "value": 1}, {"source": 50, "target": 4, "value": 1}, {"source": 50, "target": 17, "value": 1}, {"source": 51, "target": 13, "value": 1}, {"source": 51, "target": 20, "value": 1}, {"source": 52, "target": 27, "value": 1}, {"source": 52, "target": 32, "value": 1}]};
+
+		  force
+			  .nodes(graph.nodes)
+			  .links(graph.links)
+			  .start();
+
+		  var link = svg.selectAll(".link")
+			  .data(graph.links)
+			.enter().append("line")
+			  .attr("class", "link")
+			  .style("stroke-width", function(d) { return Math.sqrt(d.value); });
+
+		  var node = svg.selectAll(".node")
+			  .data(graph.nodes)
+			.enter().append("circle")
+			  .attr("class", "node")
+			  .attr("r", function(d) { return 1 + d.group; })
+			  .style("fill", function(d) { return color(d.color); })
+			  .call(force.drag);
+
+		  node.append("title")
+			  .text(function(d) { return d.name; });
+
+		  force.on("tick", function() {
+			link.attr("x1", function(d) { return d.source.x; })
+				.attr("y1", function(d) { return d.source.y; })
+				.attr("x2", function(d) { return d.target.x; })
+				.attr("y2", function(d) { return d.target.y; });
+
+			node.attr("cx", function(d) { return d.x; })
+				.attr("cy", function(d) { return d.y; });
+		  });
+		</script>
