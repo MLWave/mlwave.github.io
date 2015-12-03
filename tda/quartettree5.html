@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+	<html>
+		<head>
+			<meta charset="utf-8">
+			<title>Triskelion &bull; MQTC</title>
+			<meta name="robots" content="noindex,nofollow,noodp,nonothing,goaway">
+			<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,800' rel='stylesheet' type='text/css'>
+			<style>
+				* { margin:0; padding: 0;}
+				body { font-family: "Open Sans",Verdana,sans-serif; margin: 30px auto; width: 1400px; }
+				p { font-size: 18px; line-height: 27px; padding-bottom: 27px; color: #111; }
+				h1 { font-weight: 800; font-size: 33px; color: #2C3E50; padding-bottom: 10px;}
+				h2 { font-weight: 800; font-size: 22px; color: #2C3E50; padding-bottom: 10px; }
+				h3 { font-weight: 800; font-size: 18px; color: #34495E; padding-bottom: 10px; }
+				small { color: #7F8C8D; }
+				ul.panes { display: block; overflow: hidden; list-style-type: none; padding: 10px 0px;}
+				li.pane { float: left; width: 300px; margin-right: 40px; padding-bottom: 40px; }
+				ul { list-style-type: none; }
+				span { display: block; width: 50px; padding-right: 15px; text-align: right; height: 20px; float: left; }
+				li ul li { color: #7F8C8D; }
+				li ul li:first-child { color: #111; }
+				.node { font: 400 14px "Open Sans", Verdana, sans-serif; fill: #333; cursor:pointer;}
+				.node:hover {fill: #000;}
+				.link {stroke: steelblue; stroke-opacity:.4;fill: none; pointer-events: none;}
+				.node:hover,.node--source,.node--target { font-weight: 700;}
+				.node--source { fill: #2ca02c;}
+				.node--target { fill: #d62728;}
+				.link--source,.link--target { stroke-opacity: 1; stroke-width: 2px;}
+				.link--source { stroke: #d62728;}
+				.link--target { stroke: #2ca02c;}
+			</style>
+		</head>
+		<body>
+			<noscript>Uses JavaScript for visualizations (d3.js)</noscript>
+			<h1>&nbsp;Minimum Quartet Tree Cost Optimization</h1>
+
+			
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+			<script>
+			function draw_cluster_graph(){
+				var json = {"nodes": [{"y": 2, "s": "n12"}, {"y": 2, "s": "n13"}, {"y": 2, "s": "n10"}, {"y": 2, "s": "n11"}, {"y": 2, "s": "n16"}, {"y": 2, "s": "n17"}, {"y": 2, "s": "n14"}, {"y": 2, "s": "n15"}, {"y": 2, "s": "n18"}, {"y": 2, "s": "n19"}, {"y": 20, "s": "model-layout.png"}, {"y": 20, "s": "ja.pg158.txt"}, {"y": 20, "s": "cd.pg25985.txt"}, {"y": 20, "s": "sampleSubmission.csv"}, {"y": 20, "s": "mt.pg86.txt"}, {"y": 20, "s": "15. Bullet Chess Game Online.mp4"}, {"y": 20, "s": "14. Bullet Chess Game Online.mp4"}, {"y": 20, "s": "mt.pg74.txt"}, {"y": 20, "s": "12 - Burning Of The Midnight Lamp.mp3"}, {"y": 20, "s": "kaggle.forest.submission222.csv"}, {"y": 20, "s": "13. Bullet Chess Game Online.mp4"}, {"y": 20, "s": "17. Bullet Chess Game Online.mp4"}, {"y": 20, "s": "ja.pg21839.txt"}, {"y": 20, "s": "mt.pg76.txt"}, {"y": 20, "s": "13 - Castles Made Of Sand.mp3"}, {"y": 20, "s": "neo-cognitron-layers.png"}, {"y": 20, "s": "ja.pg42671.txt"}, {"y": 20, "s": "slide-invariant.png"}, {"y": 20, "s": "kaggle.forest.submission.tuned.csv"}, {"y": 2, "s": "n22"}, {"y": 2, "s": "n21"}, {"y": 2, "s": "n20"}, {"y": 20, "s": "cd.pg676.txt"}, {"y": 20, "s": "11 - Spanish Castle Magic.mp3"}, {"y": 20, "s": "cd.pg1023.txt"}, {"y": 20, "s": "invariant-features-slide-s.png"}, {"y": 20, "s": "kaggle.forest.submission.csv"}, {"y": 20, "s": "16. Bullet Chess Game Online.mp4"}, {"y": 2, "s": "n8"}, {"y": 2, "s": "n9"}, {"y": 2, "s": "n0"}, {"y": 2, "s": "n1"}, {"y": 2, "s": "n2"}, {"y": 2, "s": "n3"}, {"y": 2, "s": "n4"}, {"y": 2, "s": "n5"}, {"y": 2, "s": "n6"}, {"y": 2, "s": "n7"}], "links": [{"source": 0, "strength": 0.05, "target": 2}, {"source": 0, "strength": 0.05, "target": 30}, {"source": 35, "strength": 0.025, "target": 0}, {"source": 1, "strength": 0.05, "target": 43}, {"source": 1, "strength": 0.05, "target": 46}, {"source": 1, "strength": 0.025, "target": 23}, {"source": 2, "strength": 0.05, "target": 47}, {"source": 2, "strength": 0.025, "target": 10}, {"source": 8, "strength": 0.05, "target": 3}, {"source": 3, "strength": 0.05, "target": 7}, {"source": 3, "strength": 0.025, "target": 34}, {"source": 8, "strength": 0.05, "target": 4}, {"source": 4, "strength": 0.05, "target": 5}, {"source": 4, "strength": 0.05, "target": 44}, {"source": 26, "strength": 0.025, "target": 5}, {"source": 14, "strength": 0.025, "target": 5}, {"source": 6, "strength": 0.025, "target": 12}, {"source": 44, "strength": 0.05, "target": 6}, {"source": 32, "strength": 0.025, "target": 6}, {"source": 22, "strength": 0.025, "target": 7}, {"source": 7, "strength": 0.025, "target": 17}, {"source": 8, "strength": 0.05, "target": 45}, {"source": 42, "strength": 0.05, "target": 9}, {"source": 9, "strength": 0.05, "target": 47}, {"source": 31, "strength": 0.05, "target": 9}, {"source": 44, "strength": 0.025, "target": 11}, {"source": 13, "strength": 0.025, "target": 46}, {"source": 41, "strength": 0.025, "target": 15}, {"source": 41, "strength": 0.025, "target": 16}, {"source": 18, "strength": 0.025, "target": 31}, {"source": 19, "strength": 0.025, "target": 43}, {"source": 42, "strength": 0.025, "target": 20}, {"source": 39, "strength": 0.025, "target": 21}, {"source": 29, "strength": 0.025, "target": 24}, {"source": 30, "strength": 0.025, "target": 25}, {"source": 30, "strength": 0.025, "target": 27}, {"source": 46, "strength": 0.025, "target": 28}, {"source": 29, "strength": 0.05, "target": 31}, {"source": 29, "strength": 0.025, "target": 33}, {"source": 38, "strength": 0.025, "target": 36}, {"source": 39, "strength": 0.025, "target": 37}, {"source": 38, "strength": 0.05, "target": 45}, {"source": 38, "strength": 0.05, "target": 43}, {"source": 40, "strength": 0.05, "target": 39}, {"source": 40, "strength": 0.05, "target": 41}, {"source": 40, "strength": 0.05, "target": 42}, {"source": 45, "strength": 0.05, "target": 47}]};
+				
+				var width = 1400,
+					height = 700;
+
+				var svg = d3.select("body").append("svg")
+					.attr("width", width)
+					.attr("height", height);
+
+				var force = d3.layout.force()
+							.gravity(.08)
+							.distance(800)
+							.charge(-400)
+							.size([width, height]);
+
+				force
+					.nodes(json.nodes)
+					.links(json.links)
+					
+					.linkDistance(function(d) { return 10; })
+					.start();
+
+				var link = svg.selectAll(".link")
+							.data(json.links)
+							.enter().append("line")
+							.attr("class", "link")
+							.style("stroke", "#2C3E50")
+							.style("stroke-opacity", function(d) { return 0.2 - (d.strength/4); })
+							.style("stroke-width", 1)
+							  ;
+				var node = svg.selectAll(".node")
+							.data(json.nodes)
+							.enter().append("g")
+							.attr("class", "node")
+							.call(force.drag);
+							  
+				node.append("circle")
+					.attr("r", function(d) { return (Math.log(d.y) * 5)+3; })
+					.style("fill", "silver")
+					.style("fill-opacity", 0.25);
+
+				node.append("text")
+					.attr("dx", 12)
+					.attr("class", "text")
+					.attr("dy", ".35em")
+					.style("font-family", "Open Sans")
+					.style("font-weight", "400")
+					.style("color", "#2C3E50")
+					.text(function(d) { return d.s });
+
+				force.on("tick", function() {
+					link.attr("x1", function(d) { return d.source.x; })
+						.attr("y1", function(d) { return d.source.y; })
+						.attr("x2", function(d) { return d.target.x; })
+						.attr("y2", function(d) { return d.target.y; });
+
+					node.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
+				});
+
+			};
+			draw_cluster_graph();
+			</script>
