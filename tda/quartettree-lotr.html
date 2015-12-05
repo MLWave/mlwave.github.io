@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+	<html>
+		<head>
+			<meta charset="utf-8">
+			<title>Triskelion &bull; MQTC</title>
+			<meta name="robots" content="noindex,nofollow,noodp,nonothing,goaway">
+			<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,800' rel='stylesheet' type='text/css'>
+			<style>
+				* { margin:0; padding: 0;}
+				body { font-family: "Open Sans",Verdana,sans-serif; margin: 30px auto; width: 1400px; }
+				p { font-size: 18px; line-height: 27px; padding-bottom: 27px; color: #111; }
+				h1 { font-weight: 800; font-size: 33px; color: #2C3E50; padding-bottom: 10px;}
+				h2 { font-weight: 800; font-size: 22px; color: #2C3E50; padding-bottom: 10px; }
+				h3 { font-weight: 800; font-size: 18px; color: #34495E; padding-bottom: 10px; }
+				small { color: #7F8C8D; }
+				ul.panes { display: block; overflow: hidden; list-style-type: none; padding: 10px 0px;}
+				li.pane { float: left; width: 300px; margin-right: 40px; padding-bottom: 40px; }
+				ul { list-style-type: none; }
+				span { display: block; width: 50px; padding-right: 15px; text-align: right; height: 20px; float: left; }
+				li ul li { color: #7F8C8D; }
+				li ul li:first-child { color: #111; }
+				.node { font: 400 14px "Open Sans", Verdana, sans-serif; fill: #333; cursor:pointer;}
+				.node:hover {fill: #000;}
+				.link {stroke: steelblue; stroke-opacity:.4;fill: none; pointer-events: none;}
+				.node:hover,.node--source,.node--target { font-weight: 700;}
+				.node--source { fill: #2ca02c;}
+				.node--target { fill: #d62728;}
+				.link--source,.link--target { stroke-opacity: 1; stroke-width: 2px;}
+				.link--source { stroke: #d62728;}
+				.link--target { stroke: #2ca02c;}
+			</style>
+		</head>
+		<body>
+			<noscript>Uses JavaScript for visualizations (d3.js)</noscript>
+			<h1>Hierarchical clustering of LOTR characters</h1>
+			
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+			<script>
+			function draw_cluster_graph(){
+				var json = {"nodes": [{"y": 2, "s": "n12"}, {"y": 2, "s": "n13"}, {"y": 2, "s": "n10"}, {"y": 2, "s": "n11"}, {"y": 2, "s": "n16"}, {"y": 2, "s": "n17"}, {"y": 2, "s": "n14"}, {"y": 2, "s": "n15"}, {"y": 20, "s": "bilbo"}, {"y": 2, "s": "n18"}, {"y": 20, "s": "balrog"}, {"y": 20, "s": "nazgul"}, {"y": 20, "s": "arwen"}, {"y": 20, "s": "wormtongue"}, {"y": 20, "s": "arathorn"}, {"y": 20, "s": "samwise"}, {"y": 20, "s": "saruman"}, {"y": 20, "s": "gimli"}, {"y": 20, "s": "legolas"}, {"y": 2, "s": "n7"}, {"y": 20, "s": "peregrin"}, {"y": 20, "s": "frodo"}, {"y": 20, "s": "merry"}, {"y": 20, "s": "gandalf"}, {"y": 20, "s": "aragorn"}, {"y": 20, "s": "boromir"}, {"y": 20, "s": "sauron"}, {"y": 20, "s": "gollum"}, {"y": 2, "s": "n8"}, {"y": 2, "s": "n9"}, {"y": 20, "s": "elrond"}, {"y": 20, "s": "pippin"}, {"y": 2, "s": "n0"}, {"y": 2, "s": "n1"}, {"y": 2, "s": "n2"}, {"y": 2, "s": "n3"}, {"y": 2, "s": "n4"}, {"y": 2, "s": "n5"}, {"y": 2, "s": "n6"}, {"y": 20, "s": "eowyn"}], "links": [{"source": 32, "strength": 0.05, "target": 0}, {"source": 0, "strength": 0.025, "target": 21}, {"source": 0, "strength": 0.05, "target": 3}, {"source": 1, "strength": 0.025, "target": 39}, {"source": 1, "strength": 0.025, "target": 13}, {"source": 29, "strength": 0.05, "target": 1}, {"source": 29, "strength": 0.05, "target": 2}, {"source": 2, "strength": 0.05, "target": 7}, {"source": 2, "strength": 0.025, "target": 22}, {"source": 3, "strength": 0.05, "target": 36}, {"source": 35, "strength": 0.05, "target": 3}, {"source": 4, "strength": 0.025, "target": 18}, {"source": 33, "strength": 0.05, "target": 4}, {"source": 34, "strength": 0.05, "target": 4}, {"source": 9, "strength": 0.05, "target": 5}, {"source": 28, "strength": 0.05, "target": 5}, {"source": 5, "strength": 0.025, "target": 30}, {"source": 33, "strength": 0.05, "target": 6}, {"source": 6, "strength": 0.05, "target": 7}, {"source": 26, "strength": 0.025, "target": 6}, {"source": 16, "strength": 0.025, "target": 7}, {"source": 8, "strength": 0.025, "target": 36}, {"source": 14, "strength": 0.025, "target": 9}, {"source": 12, "strength": 0.025, "target": 9}, {"source": 34, "strength": 0.025, "target": 10}, {"source": 29, "strength": 0.025, "target": 11}, {"source": 15, "strength": 0.025, "target": 19}, {"source": 17, "strength": 0.025, "target": 34}, {"source": 38, "strength": 0.05, "target": 19}, {"source": 20, "strength": 0.025, "target": 19}, {"source": 23, "strength": 0.025, "target": 35}, {"source": 28, "strength": 0.025, "target": 24}, {"source": 25, "strength": 0.025, "target": 37}, {"source": 32, "strength": 0.025, "target": 27}, {"source": 32, "strength": 0.05, "target": 28}, {"source": 37, "strength": 0.025, "target": 31}, {"source": 33, "strength": 0.05, "target": 35}, {"source": 36, "strength": 0.05, "target": 38}, {"source": 37, "strength": 0.05, "target": 38}]};
+				
+				var width = 1400,
+					height = 700;
+
+				var svg = d3.select("body").append("svg")
+					.attr("width", width)
+					.attr("height", height);
+
+				var force = d3.layout.force()
+							.gravity(.08)
+							.distance(800)
+							.charge(-400)
+							.size([width, height]);
+
+				force
+					.nodes(json.nodes)
+					.links(json.links)
+					
+					.linkDistance(function(d) { return 10; })
+					.start();
+
+				var link = svg.selectAll(".link")
+							.data(json.links)
+							.enter().append("line")
+							.attr("class", "link")
+							.style("stroke", "#2C3E50")
+							.style("stroke-opacity", function(d) { return 0.2 - (d.strength/4); })
+							.style("stroke-width", 1)
+							  ;
+				var node = svg.selectAll(".node")
+							.data(json.nodes)
+							.enter().append("g")
+							.attr("class", "node")
+							.call(force.drag);
+							  
+				node.append("circle")
+					.attr("r", function(d) { return (Math.log(d.y) * 5)+3; })
+					.style("fill", "silver")
+					.style("fill-opacity", 0.25);
+
+				node.append("text")
+					.attr("dx", 12)
+					.attr("class", "text")
+					.attr("dy", ".35em")
+					.style("font-family", "Open Sans")
+					.style("font-weight", "400")
+					.style("color", "#2C3E50")
+					.text(function(d) { return d.s });
+
+				force.on("tick", function() {
+					link.attr("x1", function(d) { return d.source.x; })
+						.attr("y1", function(d) { return d.source.y; })
+						.attr("x2", function(d) { return d.target.x; })
+						.attr("y2", function(d) { return d.target.y; });
+
+					node.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
+				});
+
+			};
+			draw_cluster_graph();
+			</script>
